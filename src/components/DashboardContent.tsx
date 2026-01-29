@@ -270,6 +270,14 @@ export default function DashboardContent() {
           ))}
         </div>
       )}
+      <div className="mb-6 md:mb-0 text-center">
+        <span className="text-xl font-bold text-white">
+          Oluwadarasimi<span className="text-purple-400">.</span>
+        </span>
+        <p className="text-sm mt-2 text-purple-300/60">
+          © 2026 With ❤️ by Oluwadarasimi.
+        </p>
+      </div>
     </DashboardLayout>
   );
 }

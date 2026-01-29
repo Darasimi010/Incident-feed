@@ -1,15 +1,8 @@
 "use client";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import DashboardContent from "@/components/DashboardContent";
-
-const queryClient = new QueryClient();
-declare global {
-  interface Window {
-    __TANSTACK_QUERY_CLIENT__: import("@tanstack/query-core").QueryClient;
-  }
-}
+import { useEffect, useState } from "react";
 
 // Mock data for visual demonstration
 // Replace this with TanStack Query fetch later
@@ -44,10 +37,15 @@ declare global {
 // })).map(enrichIncident);
 
 export default function DashboardPage() {
+  const [queryClient] = useState(() => new QueryClient());
+  // This code is for all users
+  useEffect(() => {
+    window.__TANSTACK_QUERY_CLIENT__ = queryClient;
+  }, [queryClient]);
+
   return (
     <QueryClientProvider client={queryClient}>
       <DashboardContent />
-      <ReactQueryDevtools initialIsOpen={true} />
     </QueryClientProvider>
   );
 }
